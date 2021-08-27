@@ -8,10 +8,9 @@ jobs:
       docker:
         - image: docker
       steps:
-        - run: docker image ls
-        - run: docker volume ls
-        - run: docker run --mount source=datastore,destination=/mnt/volume debian:bullseye-slim dd if=/dev/zero of=/mnt/volume/zero bs=32M count=32
-        - run: docker volume ls
+        - run: echo "Building"
+        - run: sleep 10
+        - run: echo "Build Succeed"
 
 workflows:
   app-tests:
