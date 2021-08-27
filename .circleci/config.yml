@@ -20,6 +20,12 @@ jobs:
       - run: echo "Testing"
       - run: sleep 20
       - run: echo "Test Succeed"
+  deploy:
+    docker:
+      - image: docker
+    steps:
+      - checkout
+      - run: ehco "Deployed"
   
 
 workflows:
