@@ -24,4 +24,5 @@ workflows:
   app-tests:
     jobs:
       - build
-      - test
+      - test:
+          type: approval
