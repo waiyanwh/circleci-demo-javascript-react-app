@@ -4,15 +4,24 @@ orbs:
 version: 2.1
 
 jobs:
-   build:
-      docker:
-        - image: docker
-      steps:
-        - run: echo "Building"
-        - run: sleep 10
-        - run: echo "Build Succeed"
+  build:
+     docker:
+       - image: docker
+     steps:
+       - run: echo "Building"
+       - run: sleep 10
+       - run: echo "Build Succeed"
+  test:
+    docker:
+      - image: docker
+    steps:
+      - run: echo "Testing"
+      - run: sleep 20
+      - run: echo "Test Succeed"
+  
 
 workflows:
   app-tests:
     jobs:
       - build
+      - test
