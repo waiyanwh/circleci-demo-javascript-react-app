@@ -8,6 +8,7 @@ jobs:
      docker:
        - image: docker
      steps:
+       - checkout
        - run: echo "Building"
        - run: sleep 10
        - run: echo "Build Succeed"
@@ -15,14 +16,24 @@ jobs:
     docker:
       - image: docker
     steps:
+      - checkout
       - run: echo "Testing"
       - run: sleep 20
       - run: echo "Test Succeed"
   
 
 workflows:
-  app-tests:
+  build_and_test:
     jobs:
       - build
       - test:
+          requires:
+            - build
+      - hold:
           type: approval
+          requires:
+            - build
+            - test
+      - deploy:
+          requires:
+            - hold
